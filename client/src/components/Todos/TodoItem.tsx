@@ -3,6 +3,18 @@ import { Button } from '~/components/ui/Button';
 import { Trash2, Edit, Play, Pause, CheckCircle } from 'lucide-react';
 import { cn } from '~/utils';
 
+// Utility function to format date and time in 12-hour format
+const formatDateTime = (dateString: string): string => {
+  return new Date(dateString).toLocaleString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  });
+};
+
 export interface Todo {
   _id: string;
   title: string;
@@ -130,9 +142,9 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onEdit, onDelete, onToggleSta
           )}
           
           <div className="text-xs text-gray-400 dark:text-gray-500">
-            <span>Created: {new Date(todo.createdAt).toLocaleDateString()}</span>
+            <span>Created: {formatDateTime(todo.createdAt)}</span>
             {todo.updatedAt !== todo.createdAt && (
-              <span className="ml-3">Updated: {new Date(todo.updatedAt).toLocaleDateString()}</span>
+              <span className="ml-3">Updated: {formatDateTime(todo.updatedAt)}</span>
             )}
           </div>
         </div>
