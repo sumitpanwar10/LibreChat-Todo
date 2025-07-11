@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '~/components/ui/Button';
-import { Trash2, Edit, Play, Pause, CheckCircle, RefreshCw } from 'lucide-react';
+import { Trash2, Edit, Play, Pause, CheckCircle } from 'lucide-react';
 import { cn } from '~/utils';
 
 export interface Todo {
@@ -102,7 +102,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onEdit, onDelete, onToggleSta
               <div 
                 className={cn(
                   "text-xs px-3 py-1.5 rounded-md border transition-all duration-200 cursor-pointer",
-                  "hover:scale-105 hover:shadow-sm",
+                  "hover:scale-105 hover:shadow-sm active:scale-95",
                   getStatusColor(todo.status)
                 )}
                 onClick={handleToggleStatus}
@@ -113,17 +113,6 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onEdit, onDelete, onToggleSta
                   {formatStatus(todo.status)}
                 </span>
               </div>
-              
-              {/* Status Toggle Button - More Obvious UI */}
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={handleToggleStatus}
-                className="h-7 w-7 p-0 hover:bg-gray-100 dark:hover:bg-gray-700"
-                title={getNextStatusText(todo.status)}
-              >
-                <RefreshCw className="w-3.5 h-3.5" />
-              </Button>
             </div>
           </div>
           
